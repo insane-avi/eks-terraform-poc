@@ -1,10 +1,10 @@
-name: Terraform-EKS-Destroy
+name: Terraform-Destroy
 
 on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Type DESTROY to confirm infra deletion"
+        description: "Type DESTROY to confirm infrastructure deletion"
         required: true
 
 env:
@@ -15,15 +15,18 @@ jobs:
   destroy:
     runs-on: ubuntu-latest
 
+    env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
+
     steps:
-      - name: Safety check
+      - name: Validate destroy confirmation
         run: |
           if [ "${{ github.event.inputs.confirm }}" != "DESTROY" ]; then
-            echo "Confirmation missing. Aborting."
+            echo "❌ You must type DESTROY to proceed"
             exit 1
           fi
 
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Terraform
