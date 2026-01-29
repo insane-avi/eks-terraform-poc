@@ -25,7 +25,7 @@ jobs:
               cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
               
       - name: Debug Terraform token
-          run: | 
+        run: | 
             echo "TF_API_TOKEN length: ${#TF_API_TOKEN}"
             echo "TF_TOKEN_app_terraform_io length: ${#TF_TOKEN_app_terraform_io}"
 
