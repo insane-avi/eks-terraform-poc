@@ -10,6 +10,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: poc_check1 
   TF_WORKSPACE: eks-prod
+  TF_API_TOKEN: ${{secrets.TF_API_TOKEN }}
 
 jobs:
   terraform:
