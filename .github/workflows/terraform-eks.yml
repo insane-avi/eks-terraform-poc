@@ -23,6 +23,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
               cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+              
+      - name: Debug Terraform token
+          run: | 
+            echo "TF_API_TOKEN length: ${#TF_API_TOKEN}"
+            echo "TF_TOKEN_app_terraform_io length: ${#TF_TOKEN_app_terraform_io}"
 
       - name: Terraform Init
         run: terraform init
